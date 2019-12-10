@@ -26,12 +26,12 @@ if len(sys.argv) > 1:
 
 		opened_file.close()
 
-		# First row will be used as a header.
+		# First row will be used as a header, using name of text file.
 		sheet.cell(row = 1, column = c + 1).value = text_file[:-4].upper()
 
 		# Each line will be saved as its own row, after the header.
 		for r in range(len(lines)):
-			sheet.cell(row = r + 2, column = c + 1).value = lines[r]
+			sheet.cell(row = r + 2, column = c + 1).value = lines[r].strip()
 
 		print(text_file + ' was successfully read.')
 
