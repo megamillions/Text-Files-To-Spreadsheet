@@ -14,23 +14,28 @@ if len(sys.argv) > 1:
 	# Each file will be stored as its own column. (x, y) = (c, r)
 	for c in range(len(files)):
 	
+		text_file = files[c]
+	
 		try:
-			location = str(files[c])
+			location = str(text_file)
 		
 		except Exception as e:
 			print(e)
 
-		text_file = open(files[c])
+		opened_file = open(text_file)
 
-		lines = text_file.readlines()
+		lines = opened_file.readlines()
 
-		text_file.close()
+		opened_file.close()
 
-		# Each line will be saved as its own row.
+		# First row will be used as a header.
+		sheet.cell(row = 1, column = c + 1).value = text_file[:-4].upper()
+
+		# Each line will be saved as its own row, after the header.
 		for r in range(len(lines)):
-			sheet.cell(row = r + 1, column = c + 1).value = lines[r]
+			sheet.cell(row = r + 2, column = c + 1).value = lines[r]
 
-		print(files[c] + ' was successfully read.')
+		print(text_file + ' was successfully read.')
 
 	# Use the first filename given in saving new filename.
 	p = files[0][:-4] + '_text_files.xlsx'
