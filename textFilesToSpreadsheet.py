@@ -17,12 +17,10 @@ if len(sys.argv) > 1:
 		text_file = files[c]
 	
 		try:
-			location = str(text_file)
+			opened_file = open(text_file)
 		
 		except Exception as e:
 			print(e)
-
-		opened_file = open(text_file)
 
 		lines = opened_file.readlines()
 
